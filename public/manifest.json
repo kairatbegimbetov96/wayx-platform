@@ -1,0 +1,56 @@
+{
+  "name": "WayX — Логистика нового поколения",
+  "short_name": "WayX",
+  "description": "WayX — цифровая экосистема для мультимодальных перевозок, аукционов и логистики без границ.",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#005CFF",
+  "icons": [
+    {
+      "src": "/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/preview-app.png",
+      "type": "image/png",
+      "sizes": "1280x720",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["business", "productivity", "transportation", "finance"],
+  "shortcuts": [
+    {
+      "name": "Создать заявку",
+      "short_name": "Заявка",
+      "description": "Создать новую заявку на перевозку",
+      "url": "/auction/create",
+      "icons": [{ "src": "/icon192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Мои аукционы",
+      "short_name": "Аукционы",
+      "description": "Посмотреть активные аукционы",
+      "url": "/auctions",
+      "icons": [{ "src": "/icon192.png", "sizes": "192x192" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

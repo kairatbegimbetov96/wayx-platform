@@ -1,0 +1,5 @@
+[
+  { "name": "Алматы (ALA)", "iata": "ALA", "city": "Алматы" },
+  { "name": "Астана (NQZ)", "iata": "NQZ", "city": "Астана" },
+  { "name": "Шымкент (CIT)", "iata": "CIT", "city": "Шымкент" }
+]

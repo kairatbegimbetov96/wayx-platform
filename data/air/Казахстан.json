@@ -1,0 +1,29 @@
+[
+  {
+    "iata": "ALA",
+    "icao": "UAAA",
+    "name": "Алматы",
+    "city": "Алматы",
+    "country": "Казахстан",
+    "latitude": 43.3521,
+    "longitude": 77.0405
+  },
+  {
+    "iata": "NQZ",
+    "icao": "UACC",
+    "name": "Нурсултан Назарбаев",
+    "city": "Астана",
+    "country": "Казахстан",
+    "latitude": 51.0222,
+    "longitude": 71.4669
+  },
+  {
+    "iata": "CIT",
+    "icao": "UACC",
+    "name": "Шымкент",
+    "city": "Шымкент",
+    "country": "Казахстан",
+    "latitude": 42.3642,
+    "longitude": 69.4789
+  }
+]

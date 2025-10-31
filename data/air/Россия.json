@@ -1,0 +1,29 @@
+[
+  {
+    "iata": "SVO",
+    "icao": "UUEE",
+    "name": "Шереметьево",
+    "city": "Москва",
+    "country": "Россия",
+    "latitude": 55.9726,
+    "longitude": 37.4146
+  },
+  {
+    "iata": "DME",
+    "icao": "UUDD",
+    "name": "Домодедово",
+    "city": "Москва",
+    "country": "Россия",
+    "latitude": 55.4086,
+    "longitude": 37.9061
+  },
+  {
+    "iata": "LED",
+    "icao": "ULLI",
+    "name": "Пулково",
+    "city": "Санкт-Петербург",
+    "country": "Россия",
+    "latitude": 59.8003,
+    "longitude": 30.2625
+  }
+]

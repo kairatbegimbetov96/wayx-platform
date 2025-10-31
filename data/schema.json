@@ -1,0 +1,153 @@
+{
+  "auto": {
+    "description": "Города/точки для автоперевозок. Без строгого кода станции.",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "desc": "Название города/точки"
+      },
+      {
+        "name": "region",
+        "type": "string",
+        "required": false,
+        "desc": "Регион/область"
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "required": true,
+        "desc": "Страна (рус)"
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "required": false
+      }
+    ]
+  },
+  "rail": {
+    "description": "ЖД станции со структурой кода и принадлежности дороге/отделению.",
+    "fields": [
+      {
+        "name": "code",
+        "type": "string",
+        "required": true,
+        "desc": "Код станции (например, 700007)"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "road",
+        "type": "string",
+        "required": true,
+        "desc": "Железная дорога (например, Алматинская ЖД)"
+      },
+      {
+        "name": "department",
+        "type": "string",
+        "required": false,
+        "desc": "Отделение дороги"
+      },
+      {
+        "name": "region",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "required": false
+      }
+    ]
+  },
+  "air": {
+    "description": "Аэропорты (IATA, ICAO).",
+    "fields": [
+      {
+        "name": "iata",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "icao",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "city",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "required": false
+      }
+    ]
+  },
+  "ports": {
+    "description": "Морские/речные порты (UN/LOCODE при наличии).",
+    "fields": [
+      {
+        "name": "un_locode",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "city",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "required": false
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "required": false
+      }
+    ]
+  }
+}
