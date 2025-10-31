@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.wayx.kz" }],
+      "destination": "https://wayx.kz/:path*",
+      "permanent": true
+    }
+  ]
+}
