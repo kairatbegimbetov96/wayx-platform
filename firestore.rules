@@ -1,3 +1,4 @@
+
 rules_version = '2';
 
 service cloud.firestore {
@@ -5,54 +6,56 @@ service cloud.firestore {
     function isSignedIn() { return request.auth != null; }
     function isOwner(uid) { return isSignedIn() && request.auth.uid == uid; }
     function getRole() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+      return isSignedIn() ? get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role : "";
     }
     function isAdmin() { return getRole() == "admin"; }
     function isClient() { return getRole() == "client"; }
     function isSupplier() { return getRole() == "supplier"; }
 
+    // Users: каждый редактирует только свой профиль. Admin — полный доступ.
     match /users/{uid} {
-      allow read, update: if isOwner(uid) || isAdmin();
-      allow create: if isSignedIn();
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.role in ["client","supplier","admin"];
+      allow update: if isOwner(uid) || isAdmin();
       allow delete: if isAdmin();
     }
 
+    // Requests
     match /requests/{id} {
-      allow read: if isSignedIn();
+      allow read: if true; // заявки публичные на бирже
       allow create: if isClient();
-      allow update: if isOwner(resource.data.ownerId) || isAdmin();
+      allow update, delete: if isAdmin() || (isClient() && isOwner(resource.data.authorUid));
+    }
+
+    // Bids: может создавать любой авторизованный supplier;
+    // Читает владелец заявки, автор ставки, админ.
+    match /bids/{bidId} {
+      allow create: if isSupplier() && isSignedIn();
+      allow read: if isAdmin()
+        || (isSignedIn() && (
+          request.auth.uid == resource.data.supplierUid ||
+          request.auth.uid == get(/databases/$(database)/documents/requests/$(resource.data.requestId)).data.authorUid
+        ));
+      allow update, delete: if isAdmin() || (isSupplier() && request.auth.uid == resource.data.supplierUid);
+    }
+
+    // Deals: создаёт автор заявки при принятии ставки; читает участники сделки.
+    match /deals/{dealId} {
+      allow create: if isClient() && isSignedIn();
+      allow read, update: if isAdmin()
+        || (isSignedIn() && (request.auth.uid == resource.data.clientUid || request.auth.uid == resource.data.supplierUid));
       allow delete: if isAdmin();
     }
 
-    match /auctions/{id} {
-      allow read: if true;
-      allow create: if isClient();
-      allow update: if isOwner(resource.data.ownerId) || isAdmin();
-      allow delete: if isAdmin();
-    }
-
-    match /bids/{id} {
-      allow read: if isSignedIn();
-      allow create: if isSupplier();
-      allow update: if isOwner(resource.data.userId) || isAdmin();
-      allow delete: if isAdmin();
-    }
-
-    match /orders/{id} {
-      allow read: if isSignedIn();
-      allow create: if isClient() || isSupplier();
-      allow update: if isOwner(resource.data.clientId) || isOwner(resource.data.supplierId) || isAdmin();
-      allow delete: if isAdmin();
-    }
-
-    match /notifications/{notifId} {
-      allow read, update, delete: if isOwner(resource.data.userId) || isAdmin();
+    // Threads/messages: чат только между участниками сделки
+    match /threads/{threadId} {
       allow create: if isSignedIn();
+      allow read, update, delete: if isAdmin() || (isSignedIn() && request.auth.uid in resource.data.participants);
     }
-
-    match /{document=**} {
-      allow read: if isAdmin();
-      allow write: if false;
+    match /messages/{msgId} {
+      allow create, read: if isAdmin()
+        || (isSignedIn() && request.auth.uid in get(/databases/$(database)/documents/threads/$(request.resource.data.threadId)).data.participants);
+      allow update, delete: if false; // редактирование/удаление сообщений запрещено
     }
   }
 }

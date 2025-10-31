@@ -25,3 +25,12 @@
 - `deals` (сделки)
 
 > Права доступа зависят от ваших `firestore.rules`. Для быстрых тестов можно разрешить автору создавать/читать свои заявки, а всем авторизованным — создавать ставки; прод-правила настройте строже.
+
+
+### Чаты
+- Страницы чатов: `/crm/requests/[id]/chat`
+- Начинайте чат из карточки заявки (кнопка около ставки)
+
+### Firestore
+- Залей `firestore.rules` и `firestore.indexes.json` в Firebase Console → Firestore → Rules/Indexes
+- Создавай документы `users/{uid}` c `role: client|supplier|admin`
