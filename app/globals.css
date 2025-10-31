@@ -1,0 +1,291 @@
+/* ===============================
+   🌐 WayX Global Styles v10 — Premium UX Edition
+   Safe-for-Vercel: no extra deps, no imports
+   =============================== */
+
+/* Tailwind core */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ======================================
+   🧱 1) Локальные шрифты Inter (если файлов нет — не ломает билд)
+   ====================================== */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ======================================
+   ⚙️ 2) База интерфейса
+   ====================================== */
+:root {
+  /* фирменные переменные WayX (синхронизированы с tailwind.config.js) */
+  --wayx-primary: #2563eb;
+  --wayx-primary-600: #2563eb;
+  --wayx-primary-700: #1d4ed8;
+  --wayx-accent: #22d3ee;
+  --wayx-success: #22c55e;
+  --wayx-warning: #eab308;
+  --wayx-danger:  #ef4444;
+
+  --wayx-bg: #f9fafb;
+  --wayx-fg: #0f172a;
+  --wayx-card: #ffffff;
+  --wayx-border: #e5e7eb;
+
+  --wayx-radius: 12px;
+  --wayx-radius-lg: 16px;
+}
+
+:root.dark {
+  --wayx-bg: #0f172a;
+  --wayx-fg: #e2e8f0;
+  --wayx-card: rgba(2, 6, 23, 0.7);
+  --wayx-border: #1f2937;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--wayx-bg);
+  color: var(--wayx-fg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* убираем визуальные “рывки” при hover */
+* {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ======================================
+   💠 3) Контейнеры и сетка
+   ====================================== */
+.container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+.section   { @apply container py-10 sm:py-14; }
+
+/* ======================================
+   🧭 4) Навигация/ссылки
+   ====================================== */
+a { color: inherit; text-decoration: none; transition: color .2s ease; }
+a:hover { color: var(--wayx-primary); text-decoration: underline; }
+
+.nav-link { @apply text-slate-600 dark:text-slate-300 hover:text-blue-600; }
+
+/* ======================================
+   💬 5) Кнопки (единая система)
+   ====================================== */
+.btn { @apply inline-flex items-center justify-center font-medium rounded-xl px-5 py-3 select-none cursor-pointer shadow-sm; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--wayx-primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, .35);
+}
+.btn-primary:hover { background: var(--wayx-primary-700); }
+
+.btn-outline {
+  @apply border;
+  border-color: var(--wayx-primary);
+  color: var(--wayx-primary);
+}
+.btn-outline:hover { background: var(--wayx-primary); color: #fff; }
+
+.btn-accent { background: var(--wayx-accent); color: #0b1324; }
+.btn-accent:hover { filter: brightness(.95); }
+
+/* круглые action-кнопки */
+.btn-icon { @apply inline-flex items-center justify-center rounded-full w-10 h-10; }
+
+/* ======================================
+   🧩 6) Карточки / панели / стекло
+   ====================================== */
+.card {
+  background: var(--wayx-card);
+  border: 1px solid var(--wayx-border);
+  border-radius: var(--wayx-radius-lg);
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  padding: 1.5rem;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--wayx-radius-lg);
+  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+}
+:root.dark .glassmorphism { background: rgba(15,23,42,.55); border-color: rgba(255,255,255,.08); }
+
+/* ======================================
+   ✍️ 7) Формы и поля
+   ====================================== */
+input, textarea, select {
+  @apply w-full rounded-xl px-4 py-2.5;
+  background: #ffffff;
+  color: var(--wayx-fg);
+  border: 1px solid var(--wayx-border);
+}
+:root.dark input,
+:root.dark textarea,
+:root.dark select {
+  background: rgba(2, 6, 23, 0.6);
+  border-color: #1f2937;
+  color: var(--wayx-fg);
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--wayx-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .25);
+}
+label { @apply text-sm font-medium text-slate-600 dark:text-slate-300; }
+.helper { @apply text-xs text-slate-500 mt-1; }
+
+/* чекбоксы/радио без плагинов */
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--wayx-primary);
+}
+
+/* ======================================
+   🧾 8) Таблицы (заявки/аукционы)
+   ====================================== */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--wayx-card);
+  border: 1px solid var(--wayx-border);
+  border-radius: var(--wayx-radius);
+  overflow: hidden;
+}
+.table th { @apply text-left text-slate-500 dark:text-slate-300 text-xs uppercase tracking-wide; background: rgba(2,6,23,.03); }
+.table th, .table td { padding: 12px 16px; }
+.table tr + tr td { border-top: 1px solid var(--wayx-border); }
+
+/* ======================================
+   🔖 9) Бейджи/статусы
+   ====================================== */
+.badge { @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold; }
+.badge-success { background: #dcfce7; color: #166534; }
+.badge-warning { background: #fef9c3; color: #854d0e; }
+.badge-danger  { background: #fee2e2; color: #991b1b; }
+:root.dark .badge-success { background: #052e16; color: #86efac; }
+:root.dark .badge-warning { background: #3f2d00; color: #fde68a; }
+:root.dark .badge-danger  { background: #3f0a0a; color: #fecaca; }
+
+/* ======================================
+   🔔 10) Toast / Alerts / Modals
+   ====================================== */
+.toast {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 50;
+  padding: .75rem 1rem; border-radius: var(--wayx-radius);
+  color: #fff; background: rgba(15, 23, 42, .92);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  animation: fade-in .4s ease both;
+}
+.toast-success { background: var(--wayx-success); }
+.toast-error   { background: var(--wayx-danger); }
+.toast-info    { background: var(--wayx-primary); }
+
+.alert {
+  @apply w-full rounded-xl p-4;
+  border: 1px solid var(--wayx-border);
+  background: var(--wayx-card);
+}
+.alert-info    { border-color: rgba(37,99,235,.2); background: rgba(37,99,235,.05); }
+.alert-success { border-color: rgba(34,197,94,.2); background: rgba(34,197,94,.06); }
+.alert-warning { border-color: rgba(234,179,8,.25); background: rgba(234,179,8,.08); }
+.alert-danger  { border-color: rgba(239,68,68,.25); background: rgba(239,68,68,.08); }
+
+/* ======================================
+   🎞️ 11) Анимации/микровзаимодействия
+   ====================================== */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in .8s ease-in-out both; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up .8s ease both; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(37,99,235,0); }
+  50%      { box-shadow: 0 0 12px rgba(37,99,235,.45); }
+}
+.animate-pulse-glow { animation: pulse-glow 2s infinite ease-in-out; }
+
+/* градиент фирменный */
+.gradient-wayx {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  background-size: 200% 200%;
+  animation: gradient-move 6s ease infinite;
+}
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ======================================
+   🧼 12) Скроллбар/selection/мобильные
+   ====================================== */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(100,116,139,.35); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(100,116,139,.55); }
+
+::selection { background: rgba(37,99,235,.25); color: inherit; }
+
+html, body { overscroll-behavior-y: none; touch-action: manipulation; }
+
+@media (max-width: 640px) {
+  .container { @apply px-3; }
+  .btn { @apply text-sm py-2; }
+}
+
+/* ======================================
+   🖼️ 13) Медиа
+   ====================================== */
+img, video {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: .5rem;
+  transition: transform .3s ease;
+}
+img:hover { transform: scale(1.02); }

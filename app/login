@@ -1,0 +1,17 @@
+import LoginForm from "@/components/LoginForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Вход | WayX Platform",
+  description: "Страница входа для доступа к вашему рабочему пространству WayX.",
+};
+
+export default function LoginPage() {
+  return (
+    // Используем фон, созданный на главной странице,
+    // и центрируем компонент LoginForm.
+    <main className="min-h-screen bg-gray-900/95 flex items-center justify-center p-4 pt-24 md:pt-0">
+      <LoginForm />
+    </main>
+  );
+}
